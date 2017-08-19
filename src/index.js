@@ -48,8 +48,11 @@ const resolver = (endpoint: Endpoint) =>
     if (opts.BearerToken) {
       req.headers.Authorization = opts.BearerToken;
     }
+    if (opts.apikey) {
+      req.headers.apikey = opts.apikey;
+    }
     const res = await rp(req);
-    return JSON.parse(res);
+    return res;
   };
 
 const getQueriesFields = (endpoints: Endpoints, isMutation: boolean): {[string]: GraphQLType} => {
